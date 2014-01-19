@@ -66,9 +66,7 @@ func countFibEven2(num int) int {
 		if fibnum > num {
 			return sum
 		}
-		if fibnum%2 == 0 { // If fibnum is even
-			sum += fibnum
-		}
+		sum += fibnum
 	}
 	return 0
 }
@@ -77,17 +75,86 @@ func countFibEven3(num int) int {
 	defer timeTrack(time.Now(), "CountFibEven3") // Timer function
 
 	sum := 0
+	i := 1
+	for fibnum := fib(i); fibnum < num; fibnum = fib(i) {
+		if fibnum%2 == 0 {
+			sum += fibnum
+		}
+		i += 1
+	}
+	return sum
+}
+
+func countFibEven4(num int) int {
+	defer timeTrack(time.Now(), "CountFibEven4") // Timer function
+
+	sum := 0
 	i := 2
-	for fibnum := fib(i); fibnum < num; fibnum = fib(i) { // Use some big number to limit the loop
+	for fibnum := fib(i); fibnum < num; fibnum = fib(i) {
 		sum += fibnum
 		i += 3
 	}
 	return sum
 }
 
+func countFibEven5(num int) int {
+	defer timeTrack(time.Now(), "CountFibEven5") // Timer function
+
+	sum := 0
+	i := 2
+	fibnum := 0
+	for {
+		fibnum = fib(i)
+		// if fibnum is too large, exit the loop and return the answer
+		if fibnum >= num {
+			return sum
+		}
+		sum += fibnum
+		i += 3
+	}
+	return 1
+}
+
+func countFibEven6(num int) int {
+	defer timeTrack(time.Now(), "CountFibEven6") // Timer function
+	if num == 1 {
+		return 0
+	}
+	if num == 2 {
+		return 2
+	}
+	sum := 0
+	a, b := 1, 2
+	for {
+
+		if b > num {
+			return sum
+		}
+
+		if b%2 == 0 {
+			sum += b
+		}
+
+		a, b = b, a+b
+
+	}
+	return 0
+}
+
 func main() {
-	fmt.Printf("fib = %d\n", fib(50))
-	fmt.Printf("CountFibEven1 = %d\n", countFibEven1(4e6))
-	fmt.Printf("CountFibEven2 = %d\n", countFibEven2(4e6))
-	fmt.Printf("CountFibEven3 = %d\n", countFibEven3(4e6))
+	const n = 4e6
+
+	// fmt.Printf("%d\n", countFibEven1(n))
+	// fmt.Printf("%d\n", countFibEven2(n))
+	// fmt.Printf("%d\n", countFibEven3(n))
+	// fmt.Printf("%d\n", countFibEven4(n))
+	// fmt.Printf("%d\n", countFibEven5(n))
+	// fmt.Printf("%d\n", countFibEven6(n))
+
+	countFibEven1(n)
+	countFibEven2(n)
+	countFibEven3(n)
+	countFibEven4(n)
+	countFibEven5(n)
+	countFibEven6(n)
 }
