@@ -8,7 +8,7 @@ By considering the terms in the Fibonacci sequence whose values do not exceed
 four million, find the sum of the even-valued terms.
 */
 
-package main
+package main //same package name as source file
 
 import (
 	"fmt"
@@ -40,7 +40,7 @@ func fib(num int) int {
 }
 
 func countFibEven1(num int) int {
-	defer timeTrack(time.Now(), "CountFibEven1") // Timer function
+	// defer timeTrack(time.Now(), "CountFibEven1") // Timer function
 
 	sum := 0
 	fibnum := 0
@@ -57,7 +57,7 @@ func countFibEven1(num int) int {
 }
 
 func countFibEven2(num int) int {
-	defer timeTrack(time.Now(), "CountFibEven2") // Timer function
+	// defer timeTrack(time.Now(), "CountFibEven2") // Timer function
 
 	sum := 0
 	fibnum := 0
@@ -72,10 +72,11 @@ func countFibEven2(num int) int {
 }
 
 func countFibEven3(num int) int {
-	defer timeTrack(time.Now(), "CountFibEven3") // Timer function
+	// defer timeTrack(time.Now(), "CountFibEven3") // Timer function
 
 	sum := 0
 	i := 1
+
 	for fibnum := fib(i); fibnum < num; fibnum = fib(i) {
 		if fibnum%2 == 0 {
 			sum += fibnum
@@ -86,7 +87,7 @@ func countFibEven3(num int) int {
 }
 
 func countFibEven4(num int) int {
-	defer timeTrack(time.Now(), "CountFibEven4") // Timer function
+	// defer timeTrack(time.Now(), "CountFibEven4") // Timer function
 
 	sum := 0
 	i := 2
@@ -98,7 +99,7 @@ func countFibEven4(num int) int {
 }
 
 func countFibEven5(num int) int {
-	defer timeTrack(time.Now(), "CountFibEven5") // Timer function
+	// defer timeTrack(time.Now(), "CountFibEven5") // Timer function
 
 	sum := 0
 	i := 2
@@ -116,7 +117,7 @@ func countFibEven5(num int) int {
 }
 
 func countFibEven6(num int) int {
-	defer timeTrack(time.Now(), "CountFibEven6") // Timer function
+	// defer timeTrack(time.Now(), "CountFibEven6") // Timer function
 	if num == 1 {
 		return 0
 	}
@@ -141,6 +142,58 @@ func countFibEven6(num int) int {
 	return 0
 }
 
+func countFibEven7(num int) int {
+	// defer timeTrack(time.Now(), "CountFibEven7") // Timer function
+	if num == 1 {
+		return 0
+	}
+	if num == 2 {
+		return 2
+	}
+	sum := 0
+	a, b := 1, 2
+	for {
+		// check that b is in range
+		if b > num {
+			return sum
+		}
+		// add b to counter
+		sum += b
+
+		// every third fibonacci number is even, so do 3 iterations
+		a, b = b, a+b
+		a, b = b, a+b
+		a, b = b, a+b
+
+	}
+	return 0
+}
+
+func countFibEven8(num int) int {
+	// defer timeTrack(time.Now(), "CountFibEven8") // Timer function
+	if num == 1 {
+		return 0
+	}
+	if num == 2 {
+		return 2
+	}
+	sum := 0
+	a, b := 1, 2
+	for {
+		// check that b is in range
+		if b > num {
+			return sum
+		}
+		// add b to counter
+		sum += b
+
+		// every third fibonacci number is even, so do 3 iterations
+		// expanding out, gets the b3 = 2*a0 + 3*b0, a3 = a0 + 2*b0
+		a, b = a+2*b, 2*a+3*b
+	}
+	return 0
+}
+
 func main() {
 	const n = 4e6
 
@@ -150,6 +203,8 @@ func main() {
 	// fmt.Printf("%d\n", countFibEven4(n))
 	// fmt.Printf("%d\n", countFibEven5(n))
 	// fmt.Printf("%d\n", countFibEven6(n))
+	// fmt.Printf("%d\n", countFibEven7(n))
+	// fmt.Printf("%d\n", countFibEven8(n))
 
 	countFibEven1(n)
 	countFibEven2(n)
@@ -157,4 +212,6 @@ func main() {
 	countFibEven4(n)
 	countFibEven5(n)
 	countFibEven6(n)
+	countFibEven7(n)
+	countFibEven8(n)
 }
