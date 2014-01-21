@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 // Used to time other functions to compare speed
 func timeTrack(start time.Time, name string) {

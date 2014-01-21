@@ -8,7 +8,8 @@ By considering the terms in the Fibonacci sequence whose values do not exceed
 four million, find the sum of the even-valued terms.
 */
 
-package main //same package name as source file
+// package main //same package name as source file
+package euler002 //same package name as source file
 
 import (
 	"fmt"

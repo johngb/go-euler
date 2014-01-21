@@ -1,4 +1,5 @@
-package main //same package name as source file
+// package main //same package name as source file
+package euler002 //same package name as source file
 
 import (
 	"testing" //import go package for testing related functionality
