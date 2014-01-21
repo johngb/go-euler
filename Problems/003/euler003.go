@@ -64,9 +64,7 @@ func eratosthenes1(num int) []int {
 	return primeFactors
 }
 
-func eratosthenes2(num int) []int {
-	// initialise an array of with num elements
-	sieve := make([]bool, num+2)
+func eratosthenes2(num int) []int { // initialise an array of with num elements sieve := make([]bool, num+2)
 	// var sieve [1000]int // be sure that 100 >= n
 	// index = 2
 	var index int = 2
