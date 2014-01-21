@@ -5,6 +5,9 @@ import (
 	"time"
 )
 
+var p = fmt.Println
+var pf = fmt.Printf
+
 // Used to time other functions to compare speed
 func timeTrack(start time.Time, name string) {
 	elapsed := time.Since(start)

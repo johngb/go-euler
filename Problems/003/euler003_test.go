@@ -7,29 +7,29 @@ import (
 
 // const n = 20000 // constant to test the functions with
 
-// func Benchmark_eratosthenes1(b *testing.B) {
-// 	for i := 0; i < b.N; i++ {
-// 		eratosthenes1(200000)
-// 	}
-// }
+func Benchmark_eratosthenes1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		eratosthenes1(800)
+	}
+}
 
-// func Benchmark_eratosthenes2(b *testing.B) {
-// 	for i := 0; i < b.N; i++ {
-// 		eratosthenes2(200000)
-// 	}
-// }
+func Benchmark_eratosthenes2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		eratosthenes2(800)
+	}
+}
 
-// func Benchmark_eratosthenes3(b *testing.B) {
-// 	for i := 0; i < b.N; i++ {
-// 		eratosthenes3(200000)
-// 	}
-// }
+func Benchmark_eratosthenes3(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		eratosthenes3(800)
+	}
+}
 
-// func Benchmark_biggestPrimeFactor1(b *testing.B) {
-// 	for i := 0; i < b.N; i++ {
-// 		biggestPrimeFactor1(520000)
-// 	}
-// }
+func Benchmark_biggestPrimeFactor1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		biggestPrimeFactor1(520000)
+	}
+}
 
 func Benchmark_biggestPrimeFactor2(b *testing.B) {
 	for i := 0; i < b.N; i++ {

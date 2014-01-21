@@ -65,7 +65,7 @@ func eratosthenes1(num int) []int {
 }
 
 func eratosthenes2(num int) []int { // initialise an array of with num elements sieve := make([]bool, num+2)
-	// var sieve [1000]int // be sure that 100 >= n
+	var sieve [1000]bool // be sure that 100 >= n
 	// index = 2
 	var index int = 2
 
@@ -278,14 +278,15 @@ func factors4(num int) []int {
 }
 
 func main() {
-	const n = 10
+	const n = 100
 	// fmt.Println(eratosthenes1(n))
 	// fmt.Println(eratosthenes2(n))
 	// fmt.Println(eratosthenes3(n))
-	// eratosthenes1(n)
-	// eratosthenes2(n)
+	fmt.Println(eratosthenes1(n))
+	fmt.Println(eratosthenes2(n))
+	fmt.Println(eratosthenes3(n))
 
-	const p = 600851475143 //the value to find the biggest prime factor of
+	// const p = 600851475143 //the value to find the biggest prime factor of
 	// const p = 266898757345
 	// const p = 3559 * 3571
 	// const p = 156903 // a prime * 3
@@ -294,8 +295,8 @@ func main() {
 	// fmt.Printf("Is '%d' prime: %t\n", p, isPrime(p))
 	// fmt.Printf("Biggest prime factor in %d is: %d\n", p, biggestPrimeFactor1(p))
 	// fmt.Printf("Smallest factor in %d is: %d\n", p, smallestFactor1(p))
-	fmt.Println(factors3(p))
-	fmt.Println(factors4(p))
-	fmt.Println(biggestPrimeFactor2(p))
-	fmt.Println(biggestPrimeFactor3(p))
+	// fmt.Println(factors3(p))
+	// fmt.Println(factors4(p))
+	// fmt.Println(biggestPrimeFactor2(p))
+	// fmt.Println(biggestPrimeFactor3(p))
 }
