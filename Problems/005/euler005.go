@@ -98,7 +98,6 @@ func smallestNum2(n int) int {
 	factors = append(factors, eratosthenes(n)...)
 
 	// for each factor
-
 	for index := 0; index < len(factors); index++ {
 		// determine how many times it fits in n
 		for x := 1; ; x++ {
