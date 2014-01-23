@@ -73,7 +73,7 @@ func largestProduct3(s string, p int) int {
 		product = 1
 
 		// if the first character == 0, then the next p products will = 0, so skip them
-		if ord(s[idx]) == 0 {
+		if ord(s[idx+p-1]) == 0 {
 			idx += p - 1
 			continue
 		}
