@@ -50,43 +50,42 @@ func largestProduct2(N string) int {
 	// defer timeTrack(time.Now(), "largestProduct2()") // Timer function
 
 	product, largestProduct := 0, 0
-	runs := 0
 
 	for idx := 0; idx < len(N)-5; idx++ {
+
 		product = ord(N[idx]) * ord(N[idx+1]) * ord(N[idx+2]) * ord(N[idx+3]) * ord(N[idx+4])
 		// p(product)
 
 		if product > largestProduct {
 			largestProduct = product
 		}
-		runs++
 	}
 	// p(runs)
 	return largestProduct
 }
 
-func largestProduct3(N string) int {
+func largestProduct3(s string, p int) int {
 	// defer timeTrack(time.Now(), "largestProduct3()") // Timer function
 
 	product, largestProduct := 0, 0
-	char1 := 0
-	// runs := 0
 
-	for idx := 0; idx < len(N)-5; idx++ {
-		char1 = ord(N[idx])
-		if char1 == 0 {
-			// if a char is 0, the next 5 loops will be 0, so skip this and the next 4
-			idx += 4
+	for idx := 0; idx < len(s)-p; idx++ {
+		product = 1
+
+		// if the first character == 0, then the next p products will = 0, so skip them
+		if ord(s[idx]) == 0 {
+			idx += p - 1
 			continue
 		}
-		product = char1 * ord(N[idx+1]) * ord(N[idx+2]) * ord(N[idx+3]) * ord(N[idx+4])
+
+		for j := 0; j < p; j++ {
+			product *= ord(s[idx+j])
+		}
 
 		if product > largestProduct {
 			largestProduct = product
 		}
-		// runs++
 	}
-	// p(runs)
 	return largestProduct
 }
 
@@ -115,6 +114,6 @@ func main() {
 
 	p(largestProduct1(N))
 	p(largestProduct2(N))
-	p(largestProduct3(N))
+	p(largestProduct3(N, 5))
 
 }

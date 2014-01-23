@@ -33,12 +33,18 @@ func Benchmark_largestProduct1(b *testing.B) { // Form: Benchmark_functionName
 
 func Benchmark_largestProduct2(b *testing.B) { // Form: Benchmark_functionName
 	for i := 0; i < b.N; i++ {
-		largestProduct1(N)
+		largestProduct2(N)
 	}
 }
 
-func Benchmark_largestProduct3(b *testing.B) { // Form: Benchmark_functionName
+func Benchmark_largestProduct3a(b *testing.B) { // Form: Benchmark_functionName
 	for i := 0; i < b.N; i++ {
-		largestProduct1(N)
+		largestProduct3(N, 5)
+	}
+}
+
+func Benchmark_largestProduct3b(b *testing.B) { // Form: Benchmark_functionName
+	for i := 0; i < b.N; i++ {
+		largestProduct3(N, 20)
 	}
 }
