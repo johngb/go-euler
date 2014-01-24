@@ -117,8 +117,8 @@ func smallestNum2(n int) int {
 }
 
 func main() {
-	const x = 10
-	p(smallestNum1(x))
+	const x = 50
+	// p(smallestNum1(x))
 	p(smallestNum2(x))
 	// p(intPow(2, 12))
 }
