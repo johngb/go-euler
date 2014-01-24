@@ -116,11 +116,39 @@ func primeSieve1(num int) []int {
 	return primes
 }
 
+func primeProd(num int) ([]int, int) {
+	defer timeTrack(time.Now(), "primeSieve1()") // Timer function
+
+	// initialise an array of with num elements
+	sieve := make([]bool, num+2)
+	// intialise slice to contain prime numbers
+	primes := make([]int, 0)
+
+	// index = 2
+	for i := 2; i <= num; i++ {
+
+		if sieve[i] == false {
+
+			// i should be a prime number, so add to list of primes
+			primes = append(primes, i)
+
+			for j := 2; i*j <= num; j++ {
+				sieve[i*j] = true
+			}
+		}
+	}
+	prod := 1
+	for i := 1; i < len(primes); i++ {
+		prod *= primes[i]
+	}
+	return primes, prod
+}
+
 func main() {
 	// p(nthPrime1(10001))
 	// p(nthPrime2(10001))
-	st := "0123456789"
-	st1 := st[0]
-	p(st1)
+	// st := "0123456789"
+	// st1 := st[0]
+	p(primeProd(7))
 
 }
