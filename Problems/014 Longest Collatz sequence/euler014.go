@@ -128,7 +128,7 @@ func findCollatzSequence2(length int) int {
 
 // collatzWithMaxLength1 returns the number below 'n' with the longest collatz sequence
 func collatzWithMaxLength1(n int) int {
-	defer timeTrack(time.Now(), "collatzWithMaxLength1") // Timer function
+	// defer timeTrack(time.Now(), "collatzWithMaxLength1") // Timer function
 
 	longestSequence := 0
 	numberWithlongestSequence := 0
@@ -147,7 +147,7 @@ func collatzWithMaxLength1(n int) int {
 // collatzWithMaxLength2 returns the number below 'num' with the longest collatz sequence
 // tried to use a map to reduce the number of times that a repeat sequence is checked, but was slower
 func collatzWithMaxLength2(num int) int {
-	defer timeTrack(time.Now(), "collatzWithMaxLength2()") // Timer function
+	// defer timeTrack(time.Now(), "collatzWithMaxLength2()") // Timer function
 
 	// map to hold the sequence counts for known sequences
 	sequenceCounts := make(map[int]int)
@@ -192,7 +192,7 @@ func collatzWithMaxLength2(num int) int {
 
 func main() {
 
-	const n = 100000
+	const n = 1000000
 	// ans := findCollatzSequence2(n)
 	// p(ans)
 	// p("length collatz: ", len(collatz1(ans)))
