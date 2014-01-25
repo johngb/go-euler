@@ -1,33 +1,43 @@
 package main
 
-// Send the sequence 2, 3, 4, ... to channel 'ch'.
-func Generate(ch chan<- int) {
-	for i := 2; ; i++ {
-		ch <- i // Send 'i' to channel 'ch'.
-	}
-}
+import (
+	"fmt"
+)
 
-// Copy the values from channel 'in' to channel 'out',
-// removing those divisible by 'prime'.
-func Filter(in <-chan int, out chan<- int, prime int) {
-	for {
-		i := <-in // Receive value from 'in'.
-		if i%prime != 0 {
-			out <- i // Send 'i' to 'out'.
+var p = fmt.Println
+
+var arr [][]uint64
+
+const n = 2
+
+func main() {
+	arr = make([][]uint64, n+1)
+	for i := range arr {
+		arr[i] = make([]uint64, n+1)
+		for j := range arr[i] {
+			arr[i][j] = uint64(0)
 		}
 	}
+	arr[n][n] = uint64(1)
+	println(noOfRoutes(0, 0))
+
+	for i := range arr {
+		p(arr[i])
+	}
 }
 
-// The prime sieve: Daisy-chain Filter processes.
-func main() {
-
-	ch := make(chan int) // Create a new channel.
-	go Generate(ch)      // Launch Generate goroutine.
-	for i := 0; i < 400; i++ {
-		prime := <-ch
-		// print(prime, "\n")
-		ch1 := make(chan int)
-		go Filter(ch, ch1, prime)
-		ch = ch1
+func noOfRoutes(i, j int) uint64 {
+	if arr[i][j] != uint64(0) {
+		return arr[i][j]
 	}
+	var result uint64
+	if i < n && j < n {
+		result = noOfRoutes(i+1, j) + noOfRoutes(i, j+1)
+	} else if i < n && j == n {
+		result = noOfRoutes(i+1, j)
+	} else {
+		result = noOfRoutes(i, j+1)
+	}
+	arr[i][j] = result
+	return result
 }
