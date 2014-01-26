@@ -55,7 +55,7 @@ func maxPathSum(mx [][]int) int {
 
 func main() {
 
-	fileBuf, err := ioutil.ReadFile("euler018_data.txt")
+	fileBuf, err := ioutil.ReadFile("euler067_data.txt")
 	if err != nil {
 		panic(err)
 	}
@@ -77,4 +77,5 @@ func main() {
 	}
 
 	p("Max path: ", maxPathSum(arr))
+	// p(arr)
 }
