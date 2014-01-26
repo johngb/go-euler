@@ -100,9 +100,11 @@ func main() {
 	// solves the problem using a single function call to a binomial expansion
 	p(big.NewInt(0).Binomial(20+20, 20))
 
-	p(countPathsInLattice1(20, 20))
+	p(countPathsInLattice1(40, 40))
 
 	p(binomialExpansion(20, 14))
+
+	// p(paths1(16, 16))
 	// for i := range cache {
 	// 	p(cache[i])
 	// }
