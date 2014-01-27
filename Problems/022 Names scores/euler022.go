@@ -52,7 +52,5 @@ func letterHash(fileName string) int {
 }
 
 func main() {
-
 	p(letterHash("names.txt"))
-
 }
