@@ -14,6 +14,8 @@ package main
 
 import (
 	"fmt"
+	"math"
+	"strconv"
 	"time"
 )
 
@@ -26,15 +28,65 @@ func timeTrack(start time.Time, name string) {
 	fmt.Printf("%s took %s \n", name, elapsed)
 }
 
-// func functionName() {
-// 	defer timeTrack(time.Now(), "functionName()")
+func inSlice(slice []int, value int) (bool, []int) {
+	found := false
+	positions := []int{}
+	for i := 0; i < len(slice); i++ {
+		if slice[i] == value {
+			found = true
+			positions = append(positions, i)
+		}
+	}
+	return found, positions
+}
 
-// }
+func repeatingDecimalLength(divisor int) int {
+	// defer timeTrack(time.Now(), "repeatingDecimalLength()")
 
+	dividend := int(math.Pow(10, float64(len(strconv.Itoa(divisor)))))
+	limit := dividend
+	remainderList := make([]int, 0)
+
+	for len(remainderList) <= limit {
+		ans := dividend / divisor
+		diff := dividend - ans*divisor
+		if diff == 0 {
+			return 0
+		}
+		isInRemainderList, position := inSlice(remainderList, diff)
+		// p("ans: ", ans, ", diff: ", diff)
+
+		if isInRemainderList {
+			// Compare current position to position in list to get the repeating length
+			// p(remainderList)
+			return len(remainderList) - position[0]
+		}
+		remainderList = append(remainderList, diff)
+		dividend = diff * 10
+	}
+	return -1 // error condidion
+}
+
+func longestRepeatingDecimal(lim int) int {
+	defer timeTrack(time.Now(), "longestRepeatingDecimal()")
+
+	longestLength, numberWithLongestRepeat := 0, 0
+	repeatLength := 0
+
+	for i := 1; i < lim; i++ {
+		repeatLength = repeatingDecimalLength(i)
+		if repeatLength > numberWithLongestRepeat {
+			numberWithLongestRepeat = i
+			longestLength = repeatLength
+		}
+	}
+	p(longestLength)
+	return numberWithLongestRepeat
+}
+
+// JGB: Could speed up by only testing primes
 func main() {
 
-	p(1.0 / 997)
-	p(1.0 / 777)
-	p(1.0 / 991)
+	p(longestRepeatingDecimal(1000))
 
 }
