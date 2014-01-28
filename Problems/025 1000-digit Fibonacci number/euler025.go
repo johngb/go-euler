@@ -43,20 +43,14 @@ func findFactorialGreaterThanNumDigits(num int) int {
 	a := big.NewInt(1)
 	b := big.NewInt(1)
 	temp := big.NewInt(1)
-	zero := big.NewInt(0)
 	iteration := 2 // corresponding to the value of 'b'
 
 	// steps to follow for iterations
 	for len(b.String()) < num {
-		temp.Add(a, zero)
-		// p("temp: ", temp)
-		a.Add(b, zero)
-		// p("a: ", a)
+		temp.Set(a) // equivalent to temp = a
+		a.Set(b)
 		b.Add(temp, b)
-		// p("b: ", b)
 		iteration++
-		// p("Iteration ", iteration, " = ", b)
-		// p("a: ", a, " ,b: ", b, " iter: ", iteration)
 	}
 	return iteration
 }

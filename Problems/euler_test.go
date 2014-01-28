@@ -6,6 +6,6 @@ import (
 
 func Benchmark_(b *testing.B) { // Form: Benchmark_functionName
 	for i := 0; i < b.N; i++ {
-		// Body here
+		// Funcion call to function to benchmark
 	}
 }
