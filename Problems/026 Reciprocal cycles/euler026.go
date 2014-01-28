@@ -10,6 +10,26 @@ unit fractions with denominators 2 to 10 are given:
 Find the value of d < 1000 for which 1/d contains the longest recurring cycle
 in its decimal fraction part.
 */
+
+/* NOTES from vbay03
+
+A full reptend prime in base b is a prime such that b is a primitive root modulo p.  In this case 10
+is the base.
+
+A number m is a primitive root modulo n, if the multiplicative order of the number m modulo n is
+equal to phi(n).  (totient function)  (Primitive roots modulo n)
+
+Phi(p) = p - 1.  Therefore the order of 10 modulo p must be a divisor of p - 1  ( ord[p](10)|p-1 )
+(Multiplicative order).
+
+10 is a primitive root mod p only if the order is equal to phi(p) or p - 1.  Therefore, for each
+proper divisor of p - 1,  q1,q2,q3...  where q[i]<p-1,  if 10^q[i]=1 mod p for any one of them, then
+10 is not a primitive root modulo p.
+
+Other References: http://math.stackexchange.com/questions/74884/quick-algorithm-for-computing-
+orders-mod-n http://rosettacode.org/wiki/Multiplicative_order
+*/
+
 package main
 
 import (
