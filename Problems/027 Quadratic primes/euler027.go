@@ -22,6 +22,11 @@ produces the maximum number of primes for consecutive values of n, starting
 with n = 0.
 */
 
+// ------------------------------------------------
+// JGB: could add optimisations here, as we know that b has to be a prime, as when n = 0,
+// quadraticValue = b.  So restrict all b values to primes.  Possibly also generate a list of primes
+// that are used to check against rather than calculating each one every time.
+
 package main
 
 import (
@@ -96,6 +101,10 @@ func longestPrimeRun(limits int) int {
 	run := 0
 	for a = -limits; a <= limits; a++ {
 		for b = -limits; b <= limits; b++ {
+			// check to see if b is even, as b has to be a prime
+			if b%2 == 0 && b != 2 {
+				continue
+			}
 			run = checkPrimeRun(a, b)
 			if run > bestRun {
 				bestRun = run
