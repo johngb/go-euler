@@ -8,6 +8,8 @@ There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71,
 How many circular primes are there below one million?
 */
 
+// JGB: could improve by elimintaing all numbers containing 0, 2, 4, 5, 6, or 8
+
 package main
 
 import (
@@ -123,6 +125,47 @@ primeloop:
 		// increment the count
 		count++
 	}
+	return count
+}
+
+// easier to understand, using strconv
+func countCircularPrimes3(lim int) int {
+	// defer timeTrack(time.Now(), "countCircularPrimes3()")
+
+	// generate list of primes below 'lim' and above min
+	primeMap := mapOfPrimes(2, lim)
+	// create a count and set to 0
+	count := 2
+	// for each prime in the map
+primeloop:
+	for k, _ := range primeMap {
+
+		s := strconv.Itoa(k)
+		lenS := len(s)
+		// check to see if any characters are 0, 2, 4, 5, 6, or 8
+		for a := 0; a < lenS; a++ {
+			// this will also remove '2' and '5' from the list of circular
+			// primes, which we need to compensate for by starting the count
+			// off at 2
+			if s[a] == '0' || s[a] == '2' || s[a] == '4' || s[a] == '5' || s[a] == '6' || s[a] == '8' {
+				continue primeloop
+			}
+		}
+
+		// check each rotation to see if it's prime
+		for i := 0; i < lenS; i++ {
+			// create a rotated list
+			s = string(s[1:lenS]) + string(s[0])
+			pPrime, _ := strconv.Atoi(s)
+			// check to see if it's a prime
+			if primeMap[pPrime] == false {
+				// goto outerloop
+				continue primeloop
+			}
+		}
+		// increment the count
+		count++
+	}
 
 	return count
 }
@@ -131,5 +174,6 @@ func main() {
 
 	p(countCircularPrimes1(1000000))
 	p(countCircularPrimes2(1000000))
+	p(countCircularPrimes3(1000000))
 
 }
