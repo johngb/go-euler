@@ -65,7 +65,7 @@ func isPandigital(a int, b int, c int) bool {
 			return false
 		}
 	}
-	// pf("a = %d, b = %d, c = %d\n", a, b, c)
+	pf("a = %d, b = %d, c = %d\n", a, b, c)
 	return true
 }
 
