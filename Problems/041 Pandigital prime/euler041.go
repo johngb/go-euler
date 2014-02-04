@@ -6,6 +6,10 @@ also prime.
 What is the largest n-digit pandigital prime that exists?
 */
 
+// JGB: due to the various divisibility tricks, we know that it can't be a
+// 9-pandigital or an 8-pandigital, so we only test from the highest
+// 7-pandigital number
+
 package main
 
 import (
@@ -120,7 +124,7 @@ func isPandigitalN3(a int) bool {
 func largestPandigitalPrime1() int {
 	defer timeTrack(time.Now(), "largestPandigitalPrime1()")
 
-	for i := 9876543; i > 0; i -= 2 {
+	for i := 7654321; i > 0; i -= 2 {
 		if isPandigitalN3(i) && isPrime(i) {
 			return i
 		}
@@ -131,7 +135,7 @@ func largestPandigitalPrime1() int {
 func largestPandigitalPrime2() int {
 	defer timeTrack(time.Now(), "largestPandigitalPrime2()")
 
-	for i := 9876543; i > 0; i -= 2 {
+	for i := 7654321; i > 0; i -= 2 {
 		if isPandigitalN2(i) && isPrime(i) {
 			return i
 		}
