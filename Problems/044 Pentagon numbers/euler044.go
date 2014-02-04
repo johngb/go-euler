@@ -52,7 +52,7 @@ func pent(n int) int {
 func findLowestDiffPentPair() int {
 	defer timeTrack(time.Now(), "findLowestDiffPentPair()")
 
-	const LIMIT = 5000
+	const LIMIT = 5000 // determined from experiments
 
 	minDifference := 9999999999 // large number
 
