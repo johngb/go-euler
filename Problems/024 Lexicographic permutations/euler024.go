@@ -26,6 +26,8 @@ func timeTrack(start time.Time, name string) {
 	fmt.Printf("%s took %s \n", name, elapsed)
 }
 
+// nextLexicoPerm returns true if there is another lexicographic permutation
+// possible, as well as a slice showing the permutation
 func nextLexicoPerm(arr []int) (bool, []int) {
 	// defer timeTrack(time.Now(), "nextLexicoPerm()") // Timer function
 
