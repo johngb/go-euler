@@ -2,8 +2,10 @@ package euler
 
 import (
 	"fmt"
+	"io/ioutil"
 	"math/big"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -86,4 +88,25 @@ func isPrime(pPrime int) bool {
 		}
 	}
 	return true
+}
+
+// readTextFileAndProcess reads in a text file with comma separated quoted
+// words and returns an unsorted slice of strings where each string is a
+// single word
+func readTextFileAndProcess(fileName string) []string {
+	defer timeTrack(time.Now(), "readTextFileAndProcess()") // Timer function
+
+	fileBuf, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		panic(err)
+	}
+	// remove leading and trailing Unicode code points
+	fileStr := strings.Trim(string(fileBuf), "")
+	// remove all quotation marks (")
+	fileStr = strings.Replace(fileStr, "\"", "", -1)
+	// remove all newlines
+	fileStr = strings.Replace(fileStr, "\n", "", -1)
+	nameList := strings.Split(fileStr, ",")
+
+	return nameList
 }
