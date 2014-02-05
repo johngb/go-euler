@@ -278,25 +278,27 @@ func factors4(num int) []int {
 }
 
 func main() {
-	const n = 100
+	// const n = 100
 	// fmt.Println(eratosthenes1(n))
 	// fmt.Println(eratosthenes2(n))
 	// fmt.Println(eratosthenes3(n))
-	fmt.Println(eratosthenes1(n))
-	fmt.Println(eratosthenes2(n))
-	fmt.Println(eratosthenes3(n))
+	// fmt.Println(eratosthenes1(n))
+	// fmt.Println(eratosthenes2(n))
+	// fmt.Println(eratosthenes3(n))
 
 	// const p = 600851475143 //the value to find the biggest prime factor of
 	// const p = 266898757345
 	// const p = 3559 * 3571
 	// const p = 156903 // a prime * 3
-	// const p = 12876876
+	const p = 12876876
 
 	// fmt.Printf("Is '%d' prime: %t\n", p, isPrime(p))
 	// fmt.Printf("Biggest prime factor in %d is: %d\n", p, biggestPrimeFactor1(p))
 	// fmt.Printf("Smallest factor in %d is: %d\n", p, smallestFactor1(p))
-	// fmt.Println(factors3(p))
-	// fmt.Println(factors4(p))
+	fmt.Println(factors1(p))
+	fmt.Println(factors2(p))
+	fmt.Println(factors3(p))
+	fmt.Println(factors4(p))
 	// fmt.Println(biggestPrimeFactor2(p))
 	// fmt.Println(biggestPrimeFactor3(p))
 }
