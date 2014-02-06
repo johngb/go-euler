@@ -40,7 +40,7 @@ func BigFactorial(n int64) *big.Int {
 	return bigN.Mul(bigN, factorial(n-1))
 }
 
-func mapOfPrimes(min, max int) map[int]bool {
+func mapOfPrimes(max int) map[int]bool {
 	// defer timeTrack(time.Now(), "mapOfPrimes") // Timer function
 
 	sieve := make([]bool, max+2)
@@ -57,6 +57,25 @@ func mapOfPrimes(min, max int) map[int]bool {
 		}
 	}
 	return primeMap
+}
+
+func listOfPrimes(max int) []int {
+	// defer timeTrack(time.Now(), "mapOfPrimes") // Timer function
+
+	sieve := make([]bool, max+2)
+	primeList := make([]int, 0)
+
+	// 2 is the first prime
+	for i := 2; i <= max; i++ {
+		if sieve[i] == false {
+			// i should be a prime number, so add to list of primes
+			primeList = append(primeList, i)
+			for j := 2; i*j <= max; j++ {
+				sieve[i*j] = true
+			}
+		}
+	}
+	return primeList
 }
 
 func isPandigital(a int) bool {
