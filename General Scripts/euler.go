@@ -70,19 +70,20 @@ func primesNoSieve(max int) []int {
 }
 
 func primeSieve(max int) []int {
-	defer timeTrack(time.Now(), "primeSieve") // Timer function
+	// defer timeTrack(time.Now(), "primeSieve") // Timer function
 
-	sieve := make([]bool, max+1)
+	sieve := make([]bool, max/2+1)
 	// initialise the prime list with the only even prime
 	primeList := []int{2}
 
 	// 3 is the first odd prime
 	for i := 3; i <= max; i += 2 {
-		if sieve[i] == false {
+		if sieve[i/2] == false {
 			// i should be a prime number, so add to list of primes
 			primeList = append(primeList, i)
-			for j := 2; i*j <= max; j++ {
-				sieve[i*j] = true
+			// any odd * even = even, so avoid all even multiples
+			for j := 3; i*j <= max; j += 2 {
+				sieve[i*j/2] = true
 			}
 		}
 	}
