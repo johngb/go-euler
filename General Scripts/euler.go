@@ -40,33 +40,44 @@ func BigFactorial(n int64) *big.Int {
 	return bigN.Mul(bigN, factorial(n-1))
 }
 
-func mapOfPrimes(max int) map[int]bool {
-	// defer timeTrack(time.Now(), "mapOfPrimes") // Timer function
+func primesNoSieve(max int) []int {
+	defer timeTrack(time.Now(), "listOfPrimes()") // Timer function
 
-	sieve := make([]bool, max+2)
-	primeMap := make(map[int]bool)
+	primes := []int{2}
+	// next to check = 1 + the last number in the primes list
+	pPrime := 3
+	// iterate through each prime value in the known primes list
+	for ; pPrime < max; pPrime += 2 {
+		maxFactor := int(math.Sqrt(float64(pPrime)))
 
-	// 2 is the first prime
-	for i := 2; i <= max; i++ {
-		if sieve[i] == false {
-			// i should be a prime number, so add to list of primes
-			primeMap[i] = true
-			for j := 2; i*j <= max; j++ {
-				sieve[i*j] = true
+		// idx = 1, as we never need to check the first prime (i.e. 2) because
+		// we start with an odd number and increment by 2
+		for idx := 1; idx < len(primes); idx++ {
+			// if remaining primes are bigger than maximum possible factor size
+			if primes[idx] > maxFactor {
+				// pPrime must be a prime, so can end loop
+				break
+			}
+			if pPrime%primes[idx] == 0 {
+				goto newloop
 			}
 		}
+		// pPrime is a prime, so add to list of primes
+		primes = append(primes, pPrime)
+	newloop:
 	}
-	return primeMap
+	return primes
 }
 
-func listOfPrimes(max int) []int {
-	// defer timeTrack(time.Now(), "mapOfPrimes") // Timer function
+func primeSieve(max int) []int {
+	defer timeTrack(time.Now(), "primeSieve") // Timer function
 
-	sieve := make([]bool, max+2)
-	primeList := make([]int, 0)
+	sieve := make([]bool, max+1)
+	// initialise the prime list with the only even prime
+	primeList := []int{2}
 
-	// 2 is the first prime
-	for i := 2; i <= max; i++ {
+	// 3 is the first odd prime
+	for i := 3; i <= max; i += 2 {
 		if sieve[i] == false {
 			// i should be a prime number, so add to list of primes
 			primeList = append(primeList, i)
@@ -89,6 +100,24 @@ func isPandigital(a int) bool {
 	for i := 1; i <= 9; i++ {
 		// if the string doesn't contain one of the numbers
 		if !strings.Contains(str, strconv.Itoa(i)) {
+			return false
+		}
+	}
+	return true
+}
+
+func isPermutation(a, b int) bool {
+
+	strA := strconv.Itoa(a)
+	strB := strconv.Itoa(b)
+
+	for i := 0; i < len(strA); {
+		char := string(strA[0])
+		if strings.Contains(strB, char) {
+			//remove that character once from both strings
+			strA = strings.Replace(strA, char, "", 1)
+			strB = strings.Replace(strB, char, "", 1)
+		} else {
 			return false
 		}
 	}
