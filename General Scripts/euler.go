@@ -37,7 +37,7 @@ func BigFactorial(n int64) *big.Int {
 		return big.NewInt(1)
 	}
 	bigN := big.NewInt(n)
-	return bigN.Mul(bigN, factorial(n-1))
+	return bigN.Mul(bigN, BigFactorial(n-1))
 }
 
 func primesNoSieve(max int) []int {
@@ -88,6 +88,16 @@ func primeSieve(max int) []int {
 		}
 	}
 	return primeList
+}
+
+// reverseString returns a new string which is a reverse of the input 'str'
+func reverseString(str string) string {
+	newStr := ""
+
+	for idx := len(str); idx > 0; idx-- {
+		newStr += str[idx-1 : idx]
+	}
+	return newStr
 }
 
 func isPandigital(a int) bool {
