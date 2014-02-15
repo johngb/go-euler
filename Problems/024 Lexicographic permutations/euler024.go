@@ -76,7 +76,8 @@ func repeatLexicoPerm(arr []int, repetitions int) []int {
 }
 
 func main() {
-	set := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	// set := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	set := []int{3, 4, 5, 6, 7, 8}
 
 	// set[2], set[3] = set[3], set[2]
 	// p(set)
