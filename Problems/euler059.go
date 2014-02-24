@@ -187,13 +187,13 @@ func main() {
 	// str = str + string(112)
 	// p(str)
 
-	// arr := readTextFileAndProcess("cipher1.txt")
+	// arr := readTextFileAndProcess("euler059_cipher1.txt")
 	// p(arr[0] ^ int(str[2]))
 	// p(str[0], str[1])
 
 	word := "world"
-	p(decryptFile("cipher1.txt", word))
+	p(decryptFile("euler059_cipher1.txt", word))
 
-	p(decryptFile1("cipher1.txt", "ent s", 40))
+	p(decryptFile1("euler059_cipher1.txt", "ent s", 40))
 
 }

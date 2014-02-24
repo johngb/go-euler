@@ -493,7 +493,7 @@ func main() {
 	// p("-------------------------")
 
 	// p(sortValuesHighLow([]int{23, 44, 2, 7}))
-	hands := readFileAndProcess("poker.txt")
+	hands := readFileAndProcess("euler054_poker.txt")
 	// p(sortHandLowHigh(hands[0][0:5]))
 	// p(sortHandHighLow(hands[0][0:5]))
 

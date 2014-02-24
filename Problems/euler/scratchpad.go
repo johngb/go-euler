@@ -14,12 +14,14 @@ func timeTrack(start time.Time, name string) {
 	fmt.Printf("%s took %s \n", name, elapsed)
 }
 
-func functionName() {
-	defer timeTrack(time.Now(), "functionName()")
+// func functionName() {
+// 	defer timeTrack(time.Now(), "functionName()")
 
-}
+// }
 
 func main() {
-	p("hello")
+	n := 3
+	n = ^n
+	p(n)
 
 }

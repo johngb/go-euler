@@ -94,9 +94,8 @@ func countTriangleWords(fileName string) int {
 
 func main() {
 
-	// p(readTextFileAndProcess("words.txt"))
 	// p(nameLetterSum("SKY"))
 	// p(makeTriangleNumberMap(10))
-	p(countTriangleWords("words.txt"))
+	p(countTriangleWords("euler042_words.txt"))
 
 }
