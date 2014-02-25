@@ -2,38 +2,38 @@ package main
 
 import (
 	"fmt"
+	"math"
+	"time"
 )
 
 var p = fmt.Println
 var pf = fmt.Printf
 
+func proc1() {
+	p("process 1 started")
+	x := math.Sqrt(9865651)
+	p(x)
+	p("process 1 done")
+}
+
+func proc2() {
+	p("process 2 running")
+}
+
 func main() {
-	factorials := make([]int, 10)
-	factorials[0] = 1
-	for i := 1; i <= 9; i++ {
-		factorials[i] = factorials[i-1] * i
-	}
-	//find limit
-	powerOfTen := 10
-	limit := factorials[9]
-	for limit > powerOfTen {
-		limit *= 2
-		powerOfTen *= 10
-	}
 
-	sum := 0
-	var localSum, j int
-	for i := 10; i < limit; i++ {
-		localSum, j = 0, i
-		for j > 9 {
-			localSum += factorials[j%10]
-			j /= 10
-		}
-		localSum += factorials[j]
+	// go proc1()
+	// proc2()
 
-		if i == localSum {
-			sum += i
-		}
-	}
-	p(sum)
+	timerChan := make(chan time.Time)
+	go func() {
+		time.Sleep(3000)
+		timerChan <- time.Now() // send time on timerChan
+	}()
+	// Do something else; when ready, receive.
+	// Receive will block until timerChan delivers.
+	// Value sent is other goroutine's completion time.
+	completedAt := <-timerChan
+	p(completedAt)
+
 }
